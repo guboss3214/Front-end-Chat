@@ -1,0 +1,33 @@
+.chat-info {
+  width: 100%;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+
+.chat-user__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.chat-name {
+  font-weight: bold;
+  color: gray;
+}
+
+.chat-message {
+  font-size: 0.8em;
+  color: gray;
+}
+
+.chat-date {
+  font-size: 0.8em;
+  color: gray;
+}

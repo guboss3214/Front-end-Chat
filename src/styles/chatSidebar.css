@@ -1,0 +1,41 @@
+.chat-sidebar {
+  width: 40%;
+  border-right: 1px solid #e0e0e0;
+}
+
+.chat-header {
+  background-color: var(--gray);
+}
+
+.user-inter {
+  width: 100%;
+  padding: 15px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  color: gray;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 0px 8px 30px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
