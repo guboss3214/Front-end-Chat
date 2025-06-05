@@ -1,4 +1,4 @@
-import '../styles/Modal.css'
+import '../styles/modal.css'
 
 type ModalConfirmProps = {
   isOpen: boolean
