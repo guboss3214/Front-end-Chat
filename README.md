@@ -41,7 +41,7 @@ npm start
 yarn start
 ```
 
-Після цього відкрийте у браузері [http://localhost:3000](http://localhost:3000)
+Після цього відкрийте у браузері [http://localhost:5173](http://localhost:5173)
 
 ## Білд (підготовка до деплою)
 
@@ -68,5 +68,5 @@ yarn build
 Створіть файл `.env` у корені фронтенду, наприклад:
 
 ```env
-VITE_API_BASE_URL = 'http://localhost:3000/'
+VITE_API_BASE_URL = (Посилання на ваш бекенд)
 ```
