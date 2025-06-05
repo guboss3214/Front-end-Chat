@@ -1,54 +1,72 @@
-# React + TypeScript + Vite
+# Frontend частина додатку
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Це фронтенд частина веб-додатку, написана на React (TypeScript).
 
-Currently, two official plugins are available:
+## Технології
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- TypeScript
+- CSS / SCSS (або styled-components)
+- React Router
 
-## Expanding the ESLint configuration
+## Встановлення
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Клонуйте репозиторій:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone <URL вашого репозиторію>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Перейдіть у папку з фронтендом:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+cd frontend
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+3. Встановіть залежності:
+
+```bash
+npm install
+# або
+yarn install
+```
+
+## Запуск локально
+
+Для запуску проекту у режимі розробки:
+
+```bash
+npm start
+# або
+yarn start
+```
+
+Після цього відкрийте у браузері [http://localhost:3000](http://localhost:3000)
+
+## Білд (підготовка до деплою)
+
+Щоб зібрати проект для продакшену:
+
+```bash
+npm run build
+# або
+yarn build
+```
+
+Результат буде у папці `build/`.
+
+## Структура проекту
+
+- `/src` — основний код React
+- `/public` — статичні файли (індекс HTML, favicon тощо)
+- `/src/components` — React компоненти
+- `/src/pages` — сторінки додатку
+- `/src/styles` — стилі
+
+## Налаштування середовища
+
+Створіть файл `.env` у корені фронтенду, наприклад:
+
+```env
+VITE_API_BASE_URL = 'http://localhost:3000/'
 ```
