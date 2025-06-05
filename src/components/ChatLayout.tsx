@@ -3,6 +3,7 @@ import ChatWindow from './ChatWindow'
 import '../styles/chatLayout.css'
 import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 type ChatLayoutProps = {
   name: string
@@ -18,6 +19,10 @@ type ChatLayoutProps = {
 const ChatLayout = () => {
   const [selectedChat, setSelectedChat] = useState<ChatLayoutProps | null>(null)
   const { user } = useAuth()
+  const navigate = useNavigate()
+  if (!user) {
+    navigate('/login')
+  }
   return (
     <div className="chat-layout">
       <ChatSidebar

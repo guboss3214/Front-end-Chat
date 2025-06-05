@@ -2,11 +2,12 @@ import { Search, User } from 'lucide-react'
 import ChatList from './ChatList'
 import '../styles/chatSidebar.css'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import toast from 'react-hot-toast'
 import CreateUserModal from './CreateUserModal'
 import axiosInstance from '../lib/AxiosInstance'
+import LogoutModal from './LogoutModal'
 
 type UserData = {
   _id: string
@@ -37,6 +38,7 @@ const ChatSidebar = ({ onSelectChat, currentUserId }: ChatSidebarProps) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [showModal, setShowModal] = useState(false)
   const { user, loading } = useAuth()
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
 
   const fetchUsers = async () => {
     try {
@@ -139,6 +141,13 @@ const ChatSidebar = ({ onSelectChat, currentUserId }: ChatSidebarProps) => {
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -150,7 +159,15 @@ const ChatSidebar = ({ onSelectChat, currentUserId }: ChatSidebarProps) => {
           <div className="user-inter">
             <div className="user-info">
               <div>
-                <User />
+                <User
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => setIsLogoutModalOpen(true)}
+                />
+                <LogoutModal
+                  isOpen={isLogoutModalOpen}
+                  onClose={() => setIsLogoutModalOpen(false)}
+                  onLogout={handleLogout}
+                />
               </div>
               <div>
                 {!loading && user ? (

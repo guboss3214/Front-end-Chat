@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
-import '../styles/LoginPage.css'
+import '../styles/loginPage.css'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../lib/AxiosInstance'
 
-const LoginPage = () => {
+type UserData = {
+  _id: string
+  name: string
+  email: string
+  token: string
+}
+
+const RegisterPage = () => {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -19,16 +27,19 @@ const LoginPage = () => {
     setSuccess(false)
 
     try {
-      const response = await axiosInstance.post('/api/auth', {
-        email,
-      })
+      const response = await axiosInstance.post<UserData>(
+        '/api/auth/register',
+        {
+          name,
+          email,
+        }
+      )
 
-      if (response.data.token) {
+      if (response.data) {
+        setSuccess(true)
         localStorage.setItem('token', response.data.token)
+        navigate('/chats')
       }
-
-      setSuccess(true)
-      navigate('/chats')
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || 'An error occurred')
@@ -43,11 +54,20 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <p>test account: yurii@gmail.com</p>
+        <h2>Register</h2>
 
         {error && <div className="error-message">{error}</div>}
-        {success && <div className="success-message">Login successful!</div>}
+        {success && (
+          <div className="success-message">Registration successful!</div>
+        )}
+
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
         <input
           type="email"
@@ -58,15 +78,15 @@ const LoginPage = () => {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Log In'}
+          {loading ? 'Registering...' : 'Register'}
         </button>
 
         <p className="register-link">
-          Don't have an account? <Link to="/register">Register</Link>
+          Already have an account? <a href="/login">Login</a>
         </p>
       </form>
     </div>
   )
 }
 
-export default LoginPage
+export default RegisterPage

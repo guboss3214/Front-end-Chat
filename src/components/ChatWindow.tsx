@@ -60,7 +60,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ image, name, chatId }) => {
     try {
       const res = await axiosInstance.get(`/api/messages/chat/${chatId}`)
       setMessages(res.data)
-      console.log('✅ Messages fetched:', res)
     } catch (error) {
       console.error('❌ Error fetching messages:', error)
     }
@@ -69,7 +68,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ image, name, chatId }) => {
   useEffect(() => {
     if (chatId) {
       fetchMessages()
-      // При зміні чату завантажуємо назву з localStorage або з пропса
       const savedName = localStorage.getItem(LOCAL_STORAGE_CHAT_NAME_KEY)
       setChatName(savedName ?? name ?? '')
     }
@@ -239,8 +237,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ image, name, chatId }) => {
                 />
                 <Modal
                   isOpen={isDeleteModalOpen}
-                  title="Підтвердження дії"
-                  message="Ви впевнені, що хочете продовжити?"
+                  title="Action confirmation"
+                  message="Are you sure you want to continue?"
                   onConfirm={handleConfirm}
                   onCancel={closeDeleteModal}
                 />
