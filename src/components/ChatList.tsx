@@ -1,9 +1,8 @@
 import { User } from 'lucide-react'
-import React from 'react'
 import '../styles/chatList.css'
 
 type ChatItemProps = {
-  avatar: string
+  avatar?: string
   name: string
   message: string
   date?: string
