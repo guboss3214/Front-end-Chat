@@ -1,6 +1,6 @@
 import { Search, User } from 'lucide-react'
 import ChatList from './ChatList'
-import '../styles/ChatSidebar.css'
+import '../styles/chatSidebar.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
